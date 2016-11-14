@@ -65,6 +65,92 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
+# User
+
+## Get current user
+
+```shell
+curl -H "Content-Type: application/json" http://localhost:3000/api/user
+```
+
+> The above command returns JSON structured like this: 
+
+```json 
+{
+  "status": 200,
+  "message": "success",
+  "data": {
+    "id": 1,
+    "first_name": "Jane",
+    "last_name": "Doe",
+    "username": "janedoe",
+    "email": "janedoe@example.com",
+    "mobile": "+44 123 456 7890",
+    "groups": null,
+    "image": "1",
+    "public_key": "04fda237628f0a6a5c71a40d05b66bf07662b61b030149669cd7038f83fab848a1b6f3f7d154e52af9d4e9dc6f04ce029f39755996d656dcfc2266e7d75d05c6fe"
+  }
+}
+```
+
+This endpoint returns the current user 
+
+### HTTP Request
+
+`GET http://localhost:3000/api/user`
+
+
+## Create a user
+
+```shell
+curl -H "Content-Type: application/json" -X POST -d '
+{
+  "first_name": "Bob",
+  "last_name": "Jones",
+  "mobile": "01234343",
+  "username":"steve",
+  "email":"steve@example.com"
+}' 
+http://localhost:3000/api/user
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{
+  "status": 200,
+  "message": "success",
+  "data": {
+    "id": 11,
+    "first_name": "Bob",
+    "last_name": "Jones",
+    "username": "steves",
+    "email": "steve@example.com",
+    "mobile": "01234343",
+    "groups": null,
+    "image": null,
+    "public_key": null
+  }
+}
+```
+
+This endpoint creates a new user
+
+### HTTP Request
+
+`POST http://localhost:3000/api/user`
+
+### Query Parameters
+
+Parameter | Default | Required | Description
+--------- | ------- | ---------| -----------
+first_name | n/a | Yes | User's first name
+last_name | n/a | Yes |  User's last name
+mobile | n/a | Yes | User's mobile telephone number
+username | n/a | Yes | Requested username (Must be unique)
+email | n/a | Yes | User's email address (Must be unique)
+
+
 # Kittens
 
 ## Get All Kittens
